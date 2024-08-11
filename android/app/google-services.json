@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1052510852147",
+    "project_id": "passwordtest-f84c0",
+    "storage_bucket": "passwordtest-f84c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052510852147:android:80c20a4c3bb53cb019bf46",
+        "android_client_info": {
+          "package_name": "com.passwordtest.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgoP_rm_PiqvgRS9o-yWjvfK5jIEJ9s6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
