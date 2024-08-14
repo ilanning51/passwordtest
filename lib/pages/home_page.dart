@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-@override
+  @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
 
@@ -21,7 +21,9 @@ class HomePage extends StatelessWidget {
               'Signed In As',
               style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Text(
               user.email!,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

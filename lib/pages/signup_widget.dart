@@ -51,9 +51,9 @@ class _SignUpWidgetState extends State<SignupWidget> {
                 decoration: const InputDecoration(labelText: 'Email'),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (email) =>
-                  email != null && !EmailValidator.validate(email)
-                    ? 'Enter a valid email'
-                    : null,
+                    email != null && !EmailValidator.validate(email)
+                        ? 'Enter a valid email'
+                        : null,
               ),
               const SizedBox(height: 4),
               TextFormField(
@@ -62,10 +62,9 @@ class _SignUpWidgetState extends State<SignupWidget> {
                 decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator:  (value) => 
-                  value != null && value.length < 6
-                  ? 'Enter min. 6 characters'
-                  : null,
+                validator: (value) => value != null && value.length < 6
+                    ? 'Enter min. 6 characters'
+                    : null,
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
@@ -86,14 +85,13 @@ class _SignUpWidgetState extends State<SignupWidget> {
                   text: 'Already Have An Account?',
                   children: [
                     TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = widget.onClickedSignIn,
-                      text: 'Log In',
-                      style: const TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.white,
-                      )
-                    )
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = widget.onClickedSignIn,
+                        text: 'Log In',
+                        style: const TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.white,
+                        ))
                   ],
                 ),
               )
@@ -105,7 +103,6 @@ class _SignUpWidgetState extends State<SignupWidget> {
   Future signUp() async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
-
 
     showDialog(
       context: context,

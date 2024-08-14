@@ -12,8 +12,6 @@ class LoginWidget extends StatefulWidget {
     required this.onClickedSignUp,
   }) : super(key: key);
 
-
-
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
 }
@@ -69,14 +67,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                 text: 'No account?',
                 children: [
                   TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = widget.onClickedSignUp,
-                    text: 'Sign Up',
-                    style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Colors.white,
-                    )
-                  )
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = widget.onClickedSignUp,
+                      text: 'Sign Up',
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.white,
+                      ))
                 ],
               ),
             )
