@@ -39,8 +39,12 @@
             * from flutter app directory: flutter pub add firebase_core firebase_ui_auth
             * flutterfire configure
                 * yes to reuse files
+
     * Change application deployment target to 13.0
-        * 
+        * cli: open ios/Runner.xcodeproj
+        * Xcode: click on Runner in the left bar, General, Minimum Deployments
+            * set to 13.0
+
 
 ## 5. Follow firebase_ui_auth documentation to add Email/Password UI
     * https://github.com/firebase/FirebaseUI-Flutter/blob/main/docs/firebase-ui-auth/providers/email.md
