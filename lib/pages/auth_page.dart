@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:passwordtest/login_widget.dart';
-import 'package:passwordtest/signup_widget.dart';
+import 'package:passwordtest/pages/login_widget.dart';
+import 'package:passwordtest/pages/signup_widget.dart';
 
 class AuthPage extends StatefulWidget {
   @override

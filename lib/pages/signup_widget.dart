@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:passwordtest/main.dart';
-import 'package:passwordtest/utils.dart';
+import 'package:passwordtest/utils/utils.dart';
 
 class SignupWidget extends StatefulWidget {
   final Function() onClickedSignIn;
