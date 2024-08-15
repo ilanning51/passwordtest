@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:passwordtest/main.dart';
+import 'package:passwordtest/pages/forgot_password_page.dart';
 import 'package:passwordtest/utils/utils.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -35,9 +36,13 @@ class _LoginWidgetState extends State<LoginWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 40),
+            const Text(
+              'Hey There,\n Welcome Back!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
             TextField(
               controller: emailController,
-              cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(labelText: 'Email'),
             ),
@@ -61,10 +66,24 @@ class _LoginWidgetState extends State<LoginWidget> {
               onPressed: signIn,
             ),
             const SizedBox(height: 24),
+            GestureDetector(
+              child: const Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ForgotPasswordPage(),
+              )),
+            ),
+            const SizedBox(height: 16),
             RichText(
               text: TextSpan(
-                style: const TextStyle(color: Colors.white, fontSize: 20),
-                text: 'No account?',
+                style: const TextStyle(color: Colors.black, fontSize: 20),
+                text: 'No account?  ',
                 children: [
                   TextSpan(
                       recognizer: TapGestureRecognizer()
@@ -72,7 +91,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       text: 'Sign Up',
                       style: const TextStyle(
                         decoration: TextDecoration.underline,
-                        color: Colors.white,
+                        color: Colors.black,
                       ))
                 ],
               ),

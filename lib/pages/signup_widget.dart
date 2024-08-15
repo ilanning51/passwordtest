@@ -39,11 +39,6 @@ class _SignUpWidgetState extends State<SignupWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 40),
-              const Text(
-                'Hey There,\n WelcomeBack',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              ),
               TextFormField(
                 controller: emailController,
                 cursorColor: Colors.white,
@@ -81,8 +76,8 @@ class _SignUpWidgetState extends State<SignupWidget> {
               const SizedBox(height: 24),
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
-                  text: 'Already Have An Account?',
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                  text: 'Already Have An Account?  ',
                   children: [
                     TextSpan(
                         recognizer: TapGestureRecognizer()
@@ -90,7 +85,7 @@ class _SignUpWidgetState extends State<SignupWidget> {
                         text: 'Log In',
                         style: const TextStyle(
                           decoration: TextDecoration.underline,
-                          color: Colors.white,
+                          color: Colors.black,
                         ))
                   ],
                 ),
