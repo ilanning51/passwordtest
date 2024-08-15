@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:passwordtest/pages/auth_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:passwordtest/pages/home_page.dart';
+import 'package:passwordtest/pages/verify_email_page.dart';
 import 'package:passwordtest/utils/utils.dart';
 
 Future main() async {
@@ -39,7 +39,7 @@ class MainPage extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return const Center(child: Text('Something Went Wrong'));
               } else if (snapshot.hasData) {
-                return const HomePage();
+                return VerifyEmailPage();
               } else {
                 return AuthPage();
               }
