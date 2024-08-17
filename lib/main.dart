@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:passwordtest/pages/auth_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:passwordtest/pages/home_page.dart';
 import 'package:passwordtest/pages/verify_email_page.dart';
 import 'package:passwordtest/utils/utils.dart';
+import 'dart:developer';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  // FirebaseAuth.instance.authStateChanges().listen(authStateChangedHandler);
+  // FirebaseAuth.instance.userChanges().listen(userChangedHandler);
+
   runApp(const MyApp());
 }
+
 
 final navigatorKey = GlobalKey<NavigatorState>();
 

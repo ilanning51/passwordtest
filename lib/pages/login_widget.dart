@@ -20,6 +20,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool isObscure = true;
 
   @override
   void dispose() {
@@ -50,8 +51,19 @@ class _LoginWidgetState extends State<LoginWidget> {
             TextField(
               controller: passwordController,
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(labelText: 'Password'),
-              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                suffixIcon: IconButton(
+                                icon: Icon(isObscure
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    isObscure = !isObscure;
+                                  });
+                                }),
+                ),
+              obscureText: isObscure,
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(

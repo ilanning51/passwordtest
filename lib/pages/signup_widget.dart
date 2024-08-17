@@ -21,6 +21,7 @@ class _SignUpWidgetState extends State<SignupWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  bool isObscure = true;
 
   @override
   void dispose() {
@@ -45,17 +46,32 @@ class _SignUpWidgetState extends State<SignupWidget> {
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(labelText: 'Email'),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
-                        ? 'Enter a valid email'
-                        : null,
+                validator: (email) {
+                  if (email != null && !EmailValidator.validate(email)) {
+                    return 'Enter a valid email';
+                  } else if (email != null && !email.endsWith('@exeter.edu')) {
+                    return 'Enter an Exeter email';
+                  } else {
+                    return null;
+                  }
+                },
               ),
               const SizedBox(height: 4),
               TextFormField(
                 controller: passwordController,
                 textInputAction: TextInputAction.next,
-                decoration: const InputDecoration(labelText: 'Password'),
-                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  suffixIcon: IconButton(
+                      icon: Icon(
+                          isObscure ? Icons.visibility_off : Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      }),
+                ),
+                obscureText: isObscure,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) => value != null && value.length < 6
                     ? 'Enter min. 6 characters'
