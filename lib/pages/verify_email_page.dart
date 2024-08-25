@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:passwordtest/pages/home_page.dart';
+import 'package:passwordtest/pages/student_page.dart';
+import 'package:passwordtest/pages/switchboard.dart';
 import 'package:passwordtest/utils/utils.dart';
 
 class VerifyEmailPage extends StatefulWidget {
@@ -14,18 +15,25 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   bool canResendEmail = false;
   Timer? timer;
 
+  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   void initState() {
     super.initState();
 
+    print('verifyEmail');
+
     isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+
 
     if (!isEmailVerified) {
       sendVerificationEmail();
 
       timer = Timer.periodic(
         const Duration(seconds: 3),
-        (_) => checkEmailVerified(),
+        (_) {
+          checkEmailVerified();
+          }
       );
     }
   }
@@ -45,12 +53,15 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
 
-    if (isEmailVerified) timer?.cancel();
+    if (isEmailVerified) {
+      timer?.cancel();
+      }
   }
+
+  
 
   Future sendVerificationEmail() async {
     try {
-      final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
 
       setState(() => canResendEmail = false);
@@ -63,9 +74,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? const HomePage()
+      ? Switchboard()
       : Scaffold(
+        backgroundColor: const Color.fromARGB(255, 230, 230, 230),
           appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 230, 230, 230),
             title: const Text('Verify Email'),
           ),
           body: Padding(
@@ -75,18 +88,19 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               children: [
                 const Text(
                   'A verification email has been sent to your email',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
+                    backgroundColor: const Color.fromARGB(255, 215, 215, 215)
                   ),
-                  icon: const Icon(Icons.email, size: 32),
+                  icon: const Icon(Icons.email, size: 32, color: Color.fromARGB(255, 40, 40, 40),),
                   label: const Text(
-                    'Resent Email',
-                    style: TextStyle(fontSize: 24),
+                    'Resend Email',
+                    style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 40, 40, 40)),
                   ),
                   onPressed: canResendEmail ? sendVerificationEmail : null,
                 ),
@@ -97,7 +111,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                   ),
                   child: const Text(
                     'Cancel',
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 24, color: Colors.black),
                   ),
                   onPressed: () => FirebaseAuth.instance.signOut(),
                 )

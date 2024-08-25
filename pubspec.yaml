@@ -39,6 +39,9 @@ dependencies:
   firebase_auth: ^5.1.4
   cloud_firestore: ^5.2.1
   email_validator: ^3.0.0
+  animated_button: ^0.2.0
+  flutter_confetti: ^0.3.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:animated_button/animated_button.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    backgroundColor: const Color.fromARGB(255, 230, 230, 230),
     appBar: AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -34,14 +36,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Receive an email to\nreset your password',
+              'Send an email to\nreset your password',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             TextFormField(
               controller: emailController,
-              cursorColor: Colors.white,
+              cursorColor: Colors.black,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(labelText: "Email"),
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -51,16 +53,21 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         : null,
             ),
             const SizedBox(height: 20),
-            ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                ),
-                icon: const Icon(Icons.email_outlined),
-                label: const Text(
+            AnimatedButton(
+              width: 272,
+              color: const Color.fromARGB(255, 215, 215, 215),
+              onPressed: resetPassword,
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Icon(Icons.email_outlined),
+                SizedBox(width: 12,),
+                Text(
                   'Reset Password',
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                onPressed: resetPassword,
+                ],
+              ),
               ),
           ],
         ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class FacultyPage extends StatelessWidget {
+  const FacultyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
 
+    print('faculty');
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Signed In As',
+              'Signed In As Faculty',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(

@@ -11,6 +11,12 @@ class _AuthPageState extends State<AuthPage> {
   bool isLogin = true;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('auth');
+  }
+  @override
   Widget build(BuildContext context) => isLogin
       ? LoginWidget(onClickedSignUp: toggle)
       : SignupWidget(onClickedSignIn: toggle);

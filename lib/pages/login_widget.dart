@@ -1,3 +1,4 @@
+import 'package:animated_button/animated_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -31,84 +32,107 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 40),
-            const Text(
-              'Hey There,\n Welcome Back!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            ),
-            TextField(
-              controller: emailController,
-              textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(labelText: 'Email'),
-            ),
-            const SizedBox(height: 4),
-            TextField(
-              controller: passwordController,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                suffixIcon: IconButton(
-                                icon: Icon(isObscure
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                                onPressed: () {
-                                  setState(() {
-                                    isObscure = !isObscure;
-                                  });
-                                }),
-                ),
-              obscureText: isObscure,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('login');
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        backgroundColor: const Color.fromARGB(255, 230, 230, 230),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 40),
+              const Text(
+                'Hey There,\n Welcome Back!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
-              icon: const Icon(Icons.lock_open, size: 32),
-              label: const Text(
-                'Sign In',
-                style: TextStyle(fontSize: 24),
-              ),
-              onPressed: signIn,
-            ),
-            const SizedBox(height: 24),
-            GestureDetector(
-              child: const Text(
-                'Forgot Password?',
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: Colors.black,
-                  fontSize: 20,
+              TextField(
+                controller: emailController,
+                cursorColor: Colors.black,
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)),
                 ),
               ),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ForgotPasswordPage(),
-              )),
-            ),
-            const SizedBox(height: 16),
-            RichText(
-              text: TextSpan(
-                style: const TextStyle(color: Colors.black, fontSize: 20),
-                text: 'No account?  ',
-                children: [
-                  TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = widget.onClickedSignUp,
-                      text: 'Sign Up',
-                      style: const TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.black,
-                      ))
-                ],
+              const SizedBox(height: 4),
+              TextField(
+                style: const TextStyle(color: Colors.black),
+                controller: passwordController,
+                cursorColor: Colors.black,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  labelText: 'Password',
+                  suffixIcon: IconButton(
+                      icon: Icon(
+                          isObscure ? Icons.visibility_off : Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      }),
+                ),
+                obscureText: isObscure,
               ),
-            )
-          ],
+              const SizedBox(height: 20),
+              AnimatedButton(
+                color: const Color.fromARGB(255, 215, 215, 215),
+                onPressed: signIn,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.lock_open, size: 32),
+                    SizedBox(width: 12.0),
+                    Text(
+                      'Sign In',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 24),
+              GestureDetector(
+                child: const Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ForgotPasswordPage(),
+                )),
+              ),
+              const SizedBox(height: 16),
+              RichText(
+                text: TextSpan(
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
+                  text: 'No account?  ',
+                  children: [
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = widget.onClickedSignUp,
+                        text: 'Sign Up',
+                        style: const TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black,
+                        ))
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       );
 
